@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/vi/product")
+@RequestMapping("/api/v1/product")
 public class ProductController {
 
     private final ProductService productService;
@@ -39,9 +39,9 @@ public class ProductController {
         return productService.deleteProduct(productID);
     }
 
-//    @GetMapping(value = "/getAllProductsByCategory/{category}")
-//    public ResponseEntity<Product> getAllProductsByCategory(@PathVariable String category) {
-//        return productService.getAllProductsByCategory(category);
-//    }
+    @GetMapping(value = "/getAllProductsByCategory/{category}")
+    public ResponseEntity<List<Product>> getAllProductsByCategory(@PathVariable String category) {
+        return productService.getAllProductsByCategory(category);
+    }
 
 }

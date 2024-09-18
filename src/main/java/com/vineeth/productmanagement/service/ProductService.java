@@ -87,8 +87,21 @@ public class ProductService {
         return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
     }
 
-//    public ResponseEntity<Product> getAllProductsByCategory(String category) {
-//
-//    }
+    public ResponseEntity<List<Product>> getAllProductsByCategory(String category) {
+        if(category!=null){
+            try{
+                List<Product> response = productRepository.findAllProductsByCategory(category);
+                if(response.isEmpty()){
+                    return ResponseEntity.badRequest().build();
+                }
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            }
+            catch (Exception e) {
+                return ResponseEntity.badRequest().build();
+            }
+        }
+        return ResponseEntity.badRequest().build();
+    }
+
 }
 
